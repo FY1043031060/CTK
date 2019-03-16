@@ -445,7 +445,11 @@ void ctkAbstractPythonManagerTester::testPythonModule_data()
 
   QTest::newRow("1") << ""
                      << "__main__.__builtins__"
+#if PY_MAJOR_VERSION < 3
                      << "__builtin__";
+#else
+                     << "builtins";
+#endif
 
   QTest::newRow("2") << "class foo: pass"
                      << "__main__.foo"
